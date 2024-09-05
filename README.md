@@ -62,6 +62,10 @@ en el servidor, vamos a regresar documentos HTML generados en el momento. Como p
 regressar solo la página de inicio. El html de esta página esta en el archivo `home.html`.
 El sitio es el home page de una estudiante de la materia de programación web. Modifica el código
 del arvhivo para que el servidor regrese el contenido del archivo `home.html` en la ruta `/`.
+Si quieres ver el archivo lo puedes abrir dircectamente en un navegador.
+
+Nota: Como nuestro servdor todavía no regresa archivos estáticos, no se puede implementar una hoja
+de estilo CSS. Por lo tanto, no te preocupes si la página se ve un poco fea (no es malo y depende de gustos).
 
 En caso de que el usuario solicite una ruta distinta el servidor debe regresar un error 404. Si todavía
 no hemos visto como regresar errores HTTP, puedes regresar un documento HTML con un mensaje de error.
