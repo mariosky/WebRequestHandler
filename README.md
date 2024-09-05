@@ -12,9 +12,12 @@ que se encuentra en el archivo web.py de este repositorio.
 Cada vez que realices uno de los pasos de la actividad, debes hacer un commit con un mensaje
 explicando lo que hiciste.
 
-1. Modifica el código para que el servidor escuche solo en el puerto 8000 y al iniciar muestre
-   la información del puerto en el que está escuchando. Lanza el servidor y verifica que está
-   escuchando enviando una petición GET con curl, desde otra terminal.
+## Servidor en el puerto 8000
+
+Modifica el código para que el servidor escuche solo en el puerto 8000 y al
+iniciar muestre la información del puerto en el que está escuchando. Lanza el
+servidor y verifica que está escuchando enviando una petición GET con curl,
+desde otra terminal.
 
 El comando curl debe ser similar a este:
 
@@ -36,15 +39,64 @@ Del response:
 1. El valor del header `Content-Type`.
 2. El valor de los headers `Server` y `Date`.
 
-3. Modifica el código para que el servidor regrese un documento HTML que dependa de
-   la ruta y query string de la petición. Por ejemplo para esta petición en curl:
+## HTML dinámico
+
+Modifica el código para que el servidor regrese un documento HTML que dependa
+de la ruta y query string de la petición. Por ejemplo para esta petición en
+curl:
 
 ```bash
 curl http://localhost:8080/proyecto/web-uno?autor=luis
 ```
 
-Daría como respuesta:
+El servidor debería dar como respuesta:
 
 ```html
 <h1>Proyecto: web-uno Autor: luis</h1>
 ```
+
+## Home Page
+
+Ahora vamos a crear un sitio web dinámico. En lugar de regresar documentos HTML almacenados
+en el servidor, vamos a regresar documentos HTML generados en el momento. Como primer paso vamos a
+regressar solo la página de inicio. El html de esta página esta en el archivo `home.html`.
+El sitio es el home page de una estudiante de la materia de programación web. Modifica el código
+del arvhivo para que el servidor regrese el contenido del archivo `home.html` en la ruta `/`.
+
+En caso de que el usuario solicite una ruta distinta el servidor debe regresar un error 404. Si todavía
+no hemos visto como regresar errores HTTP, puedes regresar un documento HTML con un mensaje de error.
+
+Si tu servidor esta funcionando correctamente, al solicitar la ruta `/` con curl deberías ver el contenido.
+También puedes abrir un navegador y poner la dirección `http://localhost:8080` en la barra de direcciones.
+
+Si llegaste hasta aquí haz un commit con el mensaje "Home Page".
+
+## Sitio Web Dinámico
+
+Ahora vamos a regresar documentos almacenados en memoria dependiendo del la ruta solicitada.
+Si te fijas en el archimo `home.html`, veras que hay varios hipervinculos a distintas rutas.
+Dependiendo de la ruta que el usuario solicite, el servidor debe regresar el html correspondiente.
+Como ejemplo de la información de un proyecto se incluye el archivo `1.html`.
+
+Una manera sencilla de implementar este sitio sencillo es almacenar el html correspondiente en un diccionario:
+
+```python
+contenido = {
+    '/': """<html>...</html>""",
+    '/proyecto/web-uno': """
+<html>
+  <h1>Proyecto: web-uno</h1>
+</html>""",
+    '/proyecto/web-dos': """<html>...</html>""",
+    '/proyecto/web-tres': """<html>...</html>""",
+}
+```
+
+Dependiendo del valor de la ruta solicitada, el servidor debe regresar el contenido correspondiente utilzando
+la ruta como la llave en el diccionario.
+
+Debes utilizar la funcionalidad de diccionarios de Python para implementar esta funcionalidad.
+Recuerda que en un diccionario puedes almacenar también métodos, por lo que la funcionalidad que
+pueded implmentar es muy variada.
+
+Si llegaste hasta aquí haz un commit con el mensaje "Sitio Web Dinámico".
